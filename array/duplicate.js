@@ -17,4 +17,17 @@ var containsNearbyDuplicate = function (nums, k) {
   return false;
 };
 
-console.log(containsNearbyDuplicate([1, 2, 3, 1, 2, 3], 3));
+var removeDuplicates = function (nums) {
+  let i = 0;
+  let j = 1;
+  while (j < nums.length) {
+    while (nums[j] === nums[i]) {
+      j++;
+      if (j === nums.length) return i + 1;
+    }
+    nums[i + 1] = nums[j];
+    i++;
+    j++;
+  }
+  return i + 1;
+};

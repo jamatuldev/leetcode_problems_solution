@@ -52,4 +52,36 @@ var romanToInt = function (s) {
   return result;
 };
 
-console.log(romanToInt("MIIIV"));
+var intToRoman = function (num) {
+  let convert = "";
+  let mapedLetters = [
+    { key: "I", val: 1 },
+    { key: "IV", val: 4 },
+    { key: "V", val: 5 },
+    { key: "IX", val: 9 },
+    { key: "X", val: 10 },
+    { key: "XL", val: 40 },
+    { key: "L", val: 50 },
+    { key: "XC", val: 90 },
+    { key: "C", val: 100 },
+    { key: "CD", val: 400 },
+    { key: "D", val: 500 },
+    { key: "CM", val: 900 },
+    { key: "M", val: 1000 },
+  ];
+  let j = mapedLetters.length - 1;
+  while (num > 0) {
+    let letter;
+    let lastKeyIdx;
+    for (let i = j; i >= 0; i--) {
+      letter = mapedLetters[i];
+      let reminder = num % letter.val;
+      lastKeyIdx = i;
+      if (reminder < num) break;
+    }
+    j = lastKeyIdx;
+    num = num - letter.val;
+    convert += letter.key;
+  }
+  return convert;
+};
